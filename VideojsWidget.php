@@ -71,8 +71,14 @@ class VideojsWidget extends \yii\base\Widget
                             $tagContent = $tagOptions['content'];
                             unset($tagOptions['content']);
                         }
-
-                        $data .= Html::tag($tagName, $tagContent, $tagOptions);
+						if(is_array($tagOptions)){
+							foreach ($tagOptions as $key => $value) {
+								$data .= Html::tag($tagName, $tagContent, $value);
+							}
+						}else{
+							$data .= Html::tag($tagName, $tagContent, $tagOptions);
+						}
+                        
                     }
 
                 } else {
